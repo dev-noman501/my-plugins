@@ -9,6 +9,59 @@
 
 ---
 
+## Screenshots
+
+### The printed voucher
+
+This is the whole point of the plugin — one A4 sheet, browser-printable, with the approval watermark across it.
+
+<p align="center">
+  <img src="docs/screenshots/09-printable-voucher-page1.png" alt="Printable voucher, page 1" width="420">
+  <img src="docs/screenshots/10-printable-voucher-page2.png" alt="Urdu terms, page 2" width="420">
+</p>
+
+**Page 1** carries the three-block header (partner agency · your brand · receiver), the Mutamer manifest, accommodation with auto-calculated nights, transport, both flight tables and the QR code. **Page 2** is the Urdu terms sheet, right-to-left, one bullet per line from Settings.
+
+### Admin — Vouchers
+
+![Voucher list](docs/screenshots/01-voucher-list.png)
+
+The list table with search, status filter, sortable columns, the PAX summary line, coloured status pills with a one-click toggle, and the View / Edit / Duplicate / Delete actions.
+
+### The six-step wizard
+
+**Step 1 — Basic Info.** Voucher date, package, family head, manual number. Adults / children / infants / beds are read-only; they are counted from step 3.
+
+![Wizard step 1](docs/screenshots/02-wizard-basic-info.png)
+
+**Step 2 — Agency & Receiver.** Optional partner-agency block for the left of the voucher, and the Arkan/receiver block for the right.
+
+![Wizard step 2](docs/screenshots/03-wizard-agency-receiver.png)
+
+**Step 3 — Mutamers.** One row per pilgrim. The green `Saved ✓ UB-100002` in the footer is the autosave firing on every step change.
+
+![Wizard step 3](docs/screenshots/04-wizard-mutamers.png)
+
+**Step 4 — Accommodation.** Nights fill in automatically from check-in and check-out, and the total updates live.
+
+![Wizard step 4](docs/screenshots/05-wizard-accommodation.png)
+
+**Step 5 — Transport & Flights.** Ground transport plus separate departure and arrival flight tables.
+
+![Wizard step 5](docs/screenshots/06-wizard-transport-flights.png)
+
+**Step 6 — Status & Save.** Approved or Unapproved (this drives the watermark colour), plus special instructions.
+
+![Wizard step 6](docs/screenshots/07-wizard-status-save.png)
+
+### Admin — Settings
+
+Brand name, logos, centre title, number prefix and counter, QR toggle, and the editable Urdu terms.
+
+![Settings](docs/screenshots/08-settings.png)
+
+---
+
 ## What this plugin is (and is not)
 
 This is **not** a gift-voucher, coupon, discount or store-credit plugin. There is no money, no balance, no redemption and no code entry.

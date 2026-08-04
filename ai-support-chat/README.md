@@ -11,16 +11,55 @@
 
 ## Screenshots
 
-Captured on a live install where the plugin was trained on a BigCommerce agency's own pages — the answers below come entirely from that site's content, not from the model's general knowledge.
+Captured on a live install trained on a BigCommerce agency's own pages — every answer below is quoted from that site's content, not from the model's general knowledge.
 
-| | |
-|---|---|
-| ![Launcher bubble](docs/screenshots/01-launcher-bubble.png) **1. The launcher** — a single floating bubble, coloured from the Widget tab. | ![Panel greeting](docs/screenshots/02-panel-greeting.png) **2. Opened panel** — your configured title and greeting. |
-| ![RAG answer](docs/screenshots/03-rag-answer.png) **3. A grounded answer** — the service list is quoted from the site's own indexed pages. | ![Handoff button](docs/screenshots/04-handoff-button.png) **4. Handoff offered** — the visitor asked for a human, so the CTA appears. |
+### The chat widget
 
-![Contact form](docs/screenshots/05-contact-form.png)
+<p align="center">
+  <img src="docs/screenshots/01-launcher-bubble.png" alt="Launcher bubble" height="90">
+  <img src="docs/screenshots/02-panel-greeting.png" alt="Opened panel with greeting" height="420">
+  <img src="docs/screenshots/03-rag-answer.png" alt="Answer grounded in site content" height="420">
+</p>
 
-**5. The handoff form**, pre-filled with the visitor's unanswered question. Submitting it creates a Support Ticket with the full transcript and emails the team.
+The launcher bubble, the opened panel with your configured title and greeting, and a grounded answer — the service list comes straight from the site's indexed pages.
+
+<p align="center">
+  <img src="docs/screenshots/04-handoff-button.png" alt="Handoff button" height="420">
+  <img src="docs/screenshots/05-contact-form.png" alt="Contact form" height="420">
+  <img src="docs/screenshots/06-handoff-confirmation.png" alt="Handoff confirmation" height="420">
+</p>
+
+The visitor asks for a human → the **Talk to our team** button appears → the form opens pre-filled with their unanswered question → confirmation once the ticket is created.
+
+### Settings — AI Support Chat
+
+**⚙️ General** — provider, API key, chat model, and a separate embeddings provider when needed.
+
+![General tab](docs/screenshots/07-admin-general.png)
+
+**🧠 Training** — live index stats, the batched re-index button, and the knowledge-document uploader with a chunk count per file.
+
+![Training tab](docs/screenshots/08-admin-training.png)
+
+**🎨 Widget** — enable, page targeting, position, colour, title, greeting and font.
+
+![Widget tab](docs/screenshots/09-admin-widget.png)
+
+**👥 Team** — the addresses that receive every new ticket.
+
+![Team tab](docs/screenshots/10-admin-team.png)
+
+**🔗 Embed** — CORS allow-list plus the ready-made snippet for external sites.
+
+![Embed tab](docs/screenshots/11-admin-embed.png)
+
+### Support Tickets
+
+![Tickets list](docs/screenshots/12-tickets-list.png)
+
+Each handoff becomes a ticket. Opening one shows the **full chat transcript as chat bubbles** — visitor on the right, bot on the left, every turn timestamped — plus the reply box that emails the visitor back.
+
+![Ticket detail with transcript](docs/screenshots/13-ticket-detail.png)
 
 ---
 
@@ -90,7 +129,7 @@ Captured on a live install where the plugin was trained on a BigCommerce agency'
 
 > ⚠️ **After switching providers, always re-index.** Embeddings from different providers have different dimensions and are not comparable — old vectors become meaningless.
 
-> ⚠️ **Model list caveat.** The dropdown offers `google/gemma-4-31b-it:free`, which is not a real OpenRouter slug (Google's free line is Gemma 3, e.g. `google/gemma-3-27b-it:free`), so selecting it will fail upstream. The dropdown also lists `openai/gpt-oss-120b:free` while the internal fallback chain uses `openai/gpt-oss-20b:free`. Verify a slug on openrouter.ai/models before relying on it.
+> ⚠️ **Verify OpenRouter slugs.** The dropdown's model ids are hard-coded and can drift out of date — `google/gemma-4-31b-it:free` is in the list, while the internal fallback chain uses `openai/gpt-oss-20b:free` and the dropdown offers `openai/gpt-oss-120b:free`. Because OpenRouter requests carry a 3-model fallback array, a dead slug does **not** produce a visible error — the request is silently served by the next model in the chain, so a mis-typed selection can go unnoticed. Check the current slug on openrouter.ai/models when answers seem off.
 
 ### 3. Clean up your content first
 

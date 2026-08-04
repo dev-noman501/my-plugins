@@ -1,0 +1,196 @@
+/* TGM Voucher — admin styles */
+
+.tgmv-wrap .tgmv-steps-nav {
+	display: flex;
+	gap: 6px;
+	flex-wrap: wrap;
+	margin: 16px 0;
+}
+
+.tgmv-step-btn {
+	border: 1px solid #c3c4c7;
+	background: #f6f7f7;
+	padding: 8px 14px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: 600;
+	color: #50575e;
+}
+
+.tgmv-step-btn.active {
+	background: #2271b1;
+	border-color: #2271b1;
+	color: #fff;
+}
+
+.tgmv-step {
+	display: none;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 16px 20px 20px;
+	max-width: 1200px;
+}
+
+.tgmv-step.active {
+	display: block;
+}
+
+.tgmv-step h2 {
+	margin-top: 8px;
+}
+
+.tgmv-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 4px 20px;
+	max-width: 1100px;
+}
+
+.tgmv-grid p {
+	margin: 8px 0;
+}
+
+.tgmv-grid label,
+.tgmv-step > p > label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 4px;
+}
+
+.tgmv-grid input[type="text"],
+.tgmv-grid input[type="date"],
+.tgmv-grid input[type="number"],
+.tgmv-grid select {
+	width: 100%;
+	max-width: 320px;
+}
+
+.tgmv-grid .description {
+	display: block;
+	margin-top: 3px;
+}
+
+.tgmv-repeater {
+	margin: 10px 0;
+}
+
+.tgmv-repeater td {
+	vertical-align: middle;
+}
+
+.tgmv-repeater input[type="text"],
+.tgmv-repeater input[type="date"],
+.tgmv-repeater input[type="number"],
+.tgmv-repeater select {
+	width: 100%;
+	min-width: 70px;
+}
+
+.tgmv-repeater .tgmv-narrow {
+	min-width: 55px;
+}
+
+.tgmv-repeater .tgmv-sno {
+	width: 24px;
+	text-align: center;
+	font-weight: 600;
+}
+
+.tgmv-remove-row {
+	color: #b32d2e;
+	font-size: 18px;
+	text-decoration: none;
+	cursor: pointer;
+	border: 0;
+	background: none;
+}
+
+.tgmv-readonly {
+	background: #f0f0f1 !important;
+	color: #50575e;
+	pointer-events: none;
+}
+
+.tgmv-form-footer {
+	margin-top: 16px;
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	max-width: 1200px;
+}
+
+#tgmv-autosave-status {
+	font-size: 12px;
+	color: #646970;
+}
+
+#tgmv-autosave-status.ok {
+	color: #00a32a;
+	font-weight: 600;
+}
+
+#tgmv-autosave-status.err {
+	color: #d63638;
+	font-weight: 600;
+}
+
+.tgmv-form-footer #tgmv-save {
+	margin-left: auto;
+}
+
+.tgmv-logo-preview {
+	max-height: 70px;
+	max-width: 160px;
+	margin-top: 8px;
+	display: inline-block;
+	border: 1px solid #dcdcde;
+	padding: 4px;
+	border-radius: 4px;
+	background: #fff;
+}
+
+/* List table badges */
+.tgmv-badge {
+	display: inline-block;
+	padding: 2px 10px;
+	border-radius: 10px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #fff;
+}
+
+.tgmv-badge-green {
+	background: #00a32a;
+}
+
+.tgmv-badge-red {
+	background: #d63638;
+}
+
+.tgmv-toggle {
+	text-decoration: none;
+	font-size: 15px;
+}
+
+.tgmv-delete {
+	color: #b32d2e;
+	border-color: #b32d2e !important;
+}
+
+/* Actions column: keep all buttons on one row */
+.tgmv-wrap .column-actions {
+	width: 250px;
+}
+
+.tgmv-wrap .column-actions .tgmv-actions {
+	display: flex;
+	gap: 4px;
+	flex-wrap: nowrap;
+	white-space: nowrap;
+}
+
+.tgmv-wrap .column-status {
+	width: 130px;
+	white-space: nowrap;
+}

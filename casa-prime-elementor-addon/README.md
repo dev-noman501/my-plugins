@@ -8,6 +8,16 @@ Keeping these overrides in a small standalone plugin (instead of the theme or th
 > **Requires:** WordPress 6.0+, PHP 7.4+, Elementor (for the styles to apply)
 > **Version:** 1.5.0
 
+## Screenshots
+
+This plugin has **no admin screen of its own** — it is a pure styling layer. What it produces is the storefront: the Elementor + WooCommerce pages below are rendered with `assets/css/widgets.css` applied, both on the live site and inside the Elementor editor canvas.
+
+| Storefront home | Shop page |
+|---|---|
+| ![Storefront home](../casa-prime-core/docs/screenshots/storefront-home.png) | ![Shop page](../casa-prime-core/docs/screenshots/storefront-shop.png) |
+
+The only interface the plugin ever shows is an admin notice when Elementor is missing.
+
 ## What it does
 
 - Registers and enqueues the plugin's stylesheets (`assets/css/widgets.css`) on the front end **and inside the Elementor editor preview**, so the canvas always matches the live page while building.

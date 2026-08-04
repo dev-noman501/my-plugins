@@ -10,6 +10,8 @@
 
 ## 📸 Screenshots
 
+### Storefront
+
 The live storefront powered by this plugin (WooCommerce + Elementor):
 
 | Storefront Home | Shop Page |
@@ -19,6 +21,52 @@ The live storefront powered by this plugin (WooCommerce + Elementor):
 The REST API in action (`GET /wp-json/casa-prime/v1/products`):
 
 ![Products API response](docs/screenshots/api-products.png)
+
+### 🧾 Order Queue — the shop-floor screen
+
+**Casa Prime → Order Queue.** Live orders oldest-first, each card showing the exact weight and cut preference to pack, the delivery address or pickup badge, the customer's note, and the one action that moves the order to its next stage.
+
+![Order Queue](docs/screenshots/admin-order-queue.png)
+
+### 🛵 Manager Panel — order board, rider assignment, live map
+
+The richest screen is not in wp-admin — it's the role-routed front-end panel at `/?cpc_panel=1`. Managers get a kanban board across **New → Preparing → Ready → Out for Delivery → Failed → Delivered**, assign riders inline from each card, and watch riders move on the live map below.
+
+![Manager panel](docs/screenshots/panel-manager-board.png)
+
+### ⚙️ Settings screens
+
+**Delivery Settings** — store coordinates, radius vs Google driving distance, free-delivery threshold, how many days ahead customers may schedule, and the distance-tier fee table.
+
+![Delivery settings](docs/screenshots/admin-delivery-settings.png)
+
+**Store Contact** — phone, WhatsApp, email, hours and address, with a live preview of the exact JSON the mobile app receives.
+
+![Store contact](docs/screenshots/admin-store-contact.png)
+
+**Email (SMTP)** — outbound mail credentials plus a built-in test-send.
+
+![Email SMTP](docs/screenshots/admin-email-smtp.png)
+
+**Test Logins** — generate a 12-hour magic link for any customer, rider or manager, so every role flow can be tried without juggling passwords.
+
+![Test logins](docs/screenshots/admin-test-logins.png)
+
+### 🛒 WooCommerce integration
+
+The plugin adds no submenus of its own to WooCommerce — it extends the screens you already use.
+
+**Orders list** gains a **Fulfillment** column: Store Pickup / Ready for Pickup / Delivery — and once assigned, the rider's name. The custom statuses (Preparing, Ready, Out for Delivery, Delivered…) show up in the status filters too.
+
+![Orders list with fulfillment column](docs/screenshots/woo-orders-fulfillment.png)
+
+**Products list** gains a **Today's Special** toggle column next to Woo's Featured star.
+
+![Products list special column](docs/screenshots/woo-products-special-column.png)
+
+**Product edit** gains a **Today's Special** product-data tab — headline, offer price, small line, end time and banner image for the app's home-screen banner.
+
+![Today's Special product tab](docs/screenshots/woo-product-special-tab.png)
 
 ---
 

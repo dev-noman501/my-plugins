@@ -9,6 +9,21 @@
 
 ---
 
+## Screenshots
+
+Captured on a live install where the plugin was trained on a BigCommerce agency's own pages — the answers below come entirely from that site's content, not from the model's general knowledge.
+
+| | |
+|---|---|
+| ![Launcher bubble](docs/screenshots/01-launcher-bubble.png) **1. The launcher** — a single floating bubble, coloured from the Widget tab. | ![Panel greeting](docs/screenshots/02-panel-greeting.png) **2. Opened panel** — your configured title and greeting. |
+| ![RAG answer](docs/screenshots/03-rag-answer.png) **3. A grounded answer** — the service list is quoted from the site's own indexed pages. | ![Handoff button](docs/screenshots/04-handoff-button.png) **4. Handoff offered** — the visitor asked for a human, so the CTA appears. |
+
+![Contact form](docs/screenshots/05-contact-form.png)
+
+**5. The handoff form**, pre-filled with the visitor's unanswered question. Submitting it creates a Support Ticket with the full transcript and emails the team.
+
+---
+
 ## What it does
 
 1. A floating chat bubble appears on the front end (bottom-left or bottom-right).

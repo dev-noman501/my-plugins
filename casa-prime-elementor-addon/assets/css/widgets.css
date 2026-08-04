@@ -1,0 +1,330 @@
+/**
+ * Casa Prime — Elementor widget enhancements
+ * Author: Noman Nadeem
+ *
+ * Selectors are deliberately kept at a lower specificity than Elementor's own
+ * generated rules (.elementor-<id> .elementor-element-<id> ...), so anything you
+ * set in a widget's Style panel still wins over these defaults.
+ */
+
+.elementor-widget-woocommerce-product-data-tabs {
+	--cpea-green: var( --e-global-color-primary, #1e4a38 );
+	--cpea-green-deep: var( --e-global-color-2b3c4d5, #143528 );
+	--cpea-gold: var( --e-global-color-secondary, #c8a253 );
+	--cpea-ink: var( --e-global-color-1a2b3c4, #26211c );
+	--cpea-cream: var( --e-global-color-c760f0a, #fbf8f2 );
+	--cpea-muted: var( --e-global-color-5d38add, #6b655c );
+	--cpea-line: rgba( 38, 33, 28, .12 );
+	--cpea-radius: 14px;
+}
+
+/* ---------------------------------------------------------------
+   Tab strip
+   --------------------------------------------------------------- */
+
+.elementor-widget-woocommerce-product-data-tabs .woocommerce-tabs {
+	margin: 0;
+	padding: 0;
+}
+
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 10px;
+	margin: 0 0 20px;
+	padding: 0;
+	list-style: none;
+	border: 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+	scrollbar-width: none;
+	-webkit-overflow-scrolling: touch;
+}
+
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs::-webkit-scrollbar {
+	display: none;
+}
+
+/* WooCommerce paints little rounded tab "cards" plus two decorative
+   pseudo-elements on every tab. Strip all of it back to a clean strip. */
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li {
+	margin: 0;
+	padding: 0;
+	background: none;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li::before,
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li::after {
+	display: none;
+	content: none;
+	border: 0;
+	box-shadow: none;
+}
+
+/* Pills, so the tab strip speaks the same language as the site's
+   Add to Cart button rather than looking like a leftover browser default. */
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li a {
+	position: relative;
+	display: block;
+	padding: 13px 28px;
+	color: var( --cpea-muted );
+	font-size: 12.5px;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: .09em;
+	text-transform: uppercase;
+	text-decoration: none;
+	white-space: nowrap;
+	background: transparent;
+	border: 1px solid var( --cpea-line );
+	border-radius: 100px;
+	transition: color .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li a:hover,
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li a:focus-visible {
+	color: var( --cpea-green );
+	background: rgba( 30, 74, 56, .06 );
+	border-color: rgba( 30, 74, 56, .35 );
+}
+
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li.active a {
+	color: #fff;
+	background: var( --cpea-green );
+	border-color: var( --cpea-green );
+	box-shadow: 0 8px 20px rgba( 30, 74, 56, .22 );
+}
+
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li.active a:hover {
+	color: #fff;
+	background: var( --cpea-green-deep );
+	border-color: var( --cpea-green-deep );
+}
+
+/* A small gold marker under the active pill ties it to the brand's accent. */
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li.active a::after {
+	position: absolute;
+	bottom: -9px;
+	left: 50%;
+	width: 22px;
+	height: 3px;
+	content: "";
+	background: var( --cpea-gold );
+	border-radius: 3px;
+	transform: translateX( -50% );
+}
+
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li a:focus-visible {
+	outline: 2px solid var( --cpea-gold );
+	outline-offset: -3px;
+}
+
+/* Review count reads as a quiet companion to the label, not part of it. */
+.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li.reviews_tab a {
+	font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------
+   Panel
+   --------------------------------------------------------------- */
+
+.elementor-widget-woocommerce-product-data-tabs .woocommerce-tabs .woocommerce-Tabs-panel {
+	margin: 0;
+	padding: 32px 34px 36px;
+	color: var( --cpea-ink );
+	background: var( --cpea-cream );
+	border: 1px solid var( --cpea-line );
+	border-radius: var( --cpea-radius );
+	box-shadow: 0 2px 10px rgba( 38, 33, 28, .04 );
+	animation: cpea-panel-in .26s ease both;
+}
+
+@keyframes cpea-panel-in {
+	from {
+		opacity: 0;
+		transform: translateY( 6px );
+	}
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+	.elementor-widget-woocommerce-product-data-tabs .woocommerce-Tabs-panel {
+		animation: none;
+	}
+	.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li a,
+	.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li a::after {
+		transition: none;
+	}
+}
+
+/* WooCommerce prints an h2 ("Description", "Reviews") that just repeats the
+   tab you already clicked. Hide it and let the panel breathe. */
+.elementor-widget-woocommerce-product-data-tabs .woocommerce-Tabs-panel > h2:first-child {
+	display: none;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .woocommerce-Tabs-panel p {
+	margin: 0 0 1.1em;
+	font-size: 16px;
+	line-height: 1.75;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .woocommerce-Tabs-panel p:last-child {
+	margin-bottom: 0;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .woocommerce-Tabs-panel ul,
+.elementor-widget-woocommerce-product-data-tabs .woocommerce-Tabs-panel ol {
+	margin: 0 0 1.1em 1.1em;
+	line-height: 1.75;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .woocommerce-Tabs-panel li {
+	margin-bottom: .4em;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .woocommerce-Tabs-panel a {
+	color: var( --cpea-green );
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+/* Additional-information table, when a product has attributes. */
+.elementor-widget-woocommerce-product-data-tabs table.shop_attributes {
+	width: 100%;
+	margin: 0;
+	border: 0;
+	border-collapse: collapse;
+}
+
+.elementor-widget-woocommerce-product-data-tabs table.shop_attributes th,
+.elementor-widget-woocommerce-product-data-tabs table.shop_attributes td {
+	padding: 12px 14px;
+	text-align: left;
+	border: 0;
+	border-bottom: 1px solid var( --cpea-line );
+}
+
+.elementor-widget-woocommerce-product-data-tabs table.shop_attributes th {
+	width: 34%;
+	color: var( --cpea-ink );
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .07em;
+	text-transform: uppercase;
+}
+
+.elementor-widget-woocommerce-product-data-tabs table.shop_attributes tr:last-child th,
+.elementor-widget-woocommerce-product-data-tabs table.shop_attributes tr:last-child td {
+	border-bottom: 0;
+}
+
+/* ---------------------------------------------------------------
+   Reviews tab
+   --------------------------------------------------------------- */
+
+.elementor-widget-woocommerce-product-data-tabs .woocommerce-noreviews {
+	margin: 0 0 1.4em;
+	padding: 16px 18px;
+	color: var( --cpea-muted );
+	background: #fff;
+	border: 1px dashed var( --cpea-line );
+	border-radius: 10px;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .commentlist {
+	margin: 0 0 1.6em;
+	padding: 0;
+	list-style: none;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .commentlist li.review {
+	margin: 0 0 14px;
+	padding: 18px 20px;
+	background: #fff;
+	border: 1px solid var( --cpea-line );
+	border-radius: 12px;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .comment-text .star-rating span::before,
+.elementor-widget-woocommerce-product-data-tabs .star-rating span::before {
+	color: var( --cpea-gold );
+}
+
+.elementor-widget-woocommerce-product-data-tabs #review_form_wrapper {
+	padding-top: 4px;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .comment-reply-title {
+	display: block;
+	margin-bottom: 14px;
+	color: var( --cpea-ink );
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .comment-form input[type="text"],
+.elementor-widget-woocommerce-product-data-tabs .comment-form input[type="email"],
+.elementor-widget-woocommerce-product-data-tabs .comment-form textarea {
+	width: 100%;
+	padding: 12px 14px;
+	color: var( --cpea-ink );
+	background: #fff;
+	border: 1px solid var( --cpea-line );
+	border-radius: 10px;
+	transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .comment-form input:focus,
+.elementor-widget-woocommerce-product-data-tabs .comment-form textarea:focus {
+	border-color: var( --cpea-green );
+	box-shadow: 0 0 0 3px rgba( 30, 74, 56, .12 );
+	outline: 0;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .comment-form .submit {
+	padding: 13px 30px;
+	color: #fff;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	background: var( --cpea-green );
+	border: 0;
+	border-radius: 100px;
+	cursor: pointer;
+	transition: background-color .18s ease;
+}
+
+.elementor-widget-woocommerce-product-data-tabs .comment-form .submit:hover {
+	background: var( --cpea-green-deep );
+}
+
+/* ---------------------------------------------------------------
+   Small screens
+   --------------------------------------------------------------- */
+
+@media ( max-width: 767px ) {
+	.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs {
+		gap: 8px;
+		margin-bottom: 18px;
+	}
+
+	.elementor-widget-woocommerce-product-data-tabs ul.wc-tabs li a {
+		padding: 11px 20px;
+		font-size: 11.5px;
+		letter-spacing: .07em;
+	}
+
+	.elementor-widget-woocommerce-product-data-tabs .woocommerce-tabs .woocommerce-Tabs-panel {
+		padding: 24px 20px 28px;
+	}
+
+	.elementor-widget-woocommerce-product-data-tabs table.shop_attributes th {
+		width: 42%;
+	}
+}

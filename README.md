@@ -14,6 +14,10 @@ One folder per plugin. Each folder is a complete, self-contained WordPress plugi
 | [`tgm-voucher`](tgm-voucher/) | Umrah / Hajj travel voucher generator — six-step wizard, voucher list table, QR code, and a print-ready A4 document with an Approved / Unapproved watermark. | [README](tgm-voucher/README.md) |
 | [`referral-tracker-pro`](referral-tracker-pro/) | Referral link tracking and analytics — visits, `tel:` call clicks and form submissions attributed to per-referrer links, with lead capture, printable lead sheets and a CallRail integration for verified calls. | [README](referral-tracker-pro/README.md) |
 | [`scrubs-ghl-proxy`](scrubs-ghl-proxy/) | One-route server-side proxy to the GoHighLevel Contacts API — fixes browser CORS errors, keeps the API token off the page source, and translates the legacy v1 payload to v2. | [README](scrubs-ghl-proxy/README.md) |
+| [`app-auth-api`](app-auth-api/) | A ready-made REST API for mobile apps on WordPress + WooCommerce — registration, login, password reset, products, categories, content, cart, vouchers and checkout. Delivery zones and fees are configurable, so it works on any store. | [README](app-auth-api/README.md) |
+| [`redirection-urls`](redirection-urls/) | Manage 301/302/307 redirects one at a time or in bulk from a CSV. Built for SEO migrations. | [README](redirection-urls/README.md) |
+| [`pagespeed-audit-plugin`](pagespeed-audit-plugin/) | Front-end site-audit tool — runs any URL through the Google PageSpeed Insights API, shows Lighthouse scores and Core Web Vitals for desktop and mobile, and emails a PDF report. | [README](pagespeed-audit-plugin/README.md) |
+| [`youtube-reels-carousel`](youtube-reels-carousel/) | Full-width carousel of vertical YouTube videos that autoplay muted in the grid and open in a centre-mode lightbox. | [README](youtube-reels-carousel/README.md) |
 
 ## Documentation
 

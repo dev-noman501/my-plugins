@@ -1,0 +1,345 @@
+/* Import Poppins font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* 🎨 Dark-themed Email Popup */
+#email-popup {
+    position: fixed;
+    inset: 0;
+    background-color: #34313FD1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    font-family: 'Poppins', sans-serif;
+}
+
+#email-popup .popup-content {
+    background-color: #ffffff;
+    padding: 40px 32px;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+#email-popup .popup-content h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #34313f;
+    margin-bottom: 22px;
+}
+
+#email-popup .popup-content input[type="email"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#email-popup .popup-content input[type="email"]:focus {
+    border-color: #1F6CA3;
+    box-shadow: 0 0 0 3px rgba(52, 49, 63, 0.2);
+}
+
+#email-popup .popup-content button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #257FBF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+#email-popup .popup-content button:hover {
+    background-color: #1F6CA3;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Apply font globally inside container */
+.pagespeed-container * {
+    font-family: 'Poppins', sans-serif;
+}
+
+.pagespeed-container #psa-url {
+    border-radius: 8px 0 0 8px !important;
+}
+
+.pagespeed-container #psa-submit {
+    border-radius: 0 8px 8px 0 !important;
+}
+
+.elementor-shortcode .pagespeed-container {
+   display: flex !important;
+   justify-content: center !important;
+}
+
+/* Main container */
+.pagespeed-container .container {
+    max-width: 1024px;
+    width: 100%;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    padding: 40px 20px;
+}
+
+.pagespeed-container h1 {
+    font-size: 38px !important;
+    font-weight: 800 !important;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.pagespeed-container .input-group {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.pagespeed-container input[type="text"] {
+    padding: 16px;
+    font-size: 1rem;
+    width: 45%;
+    height: 48px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px 0 0 8px;
+    outline: none;
+}
+
+.pagespeed-container input[type="text"]:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+.pagespeed-container button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagespeed-container button:disabled {
+    background-color: #2177b5;
+    cursor: not-allowed;
+}
+
+.pagespeed-container button:hover:not(:disabled) {
+    background-color: #1d4ed8;
+}
+
+/* Tabs Container */
+.pagespeed-container #view-tabs {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Base tab button style */
+.pagespeed-container .view-tab {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #257FBF;
+    background: transparent;
+    color: #257FBF; /* Matches active background */
+    transition: all 0.3s ease;
+}
+
+/* Inactive Tab Hover */
+.pagespeed-container .view-tab:hover {
+    background: #257FBF !important;
+    color: white !important;
+}
+
+/* Active Tab Styling */
+.pagespeed-container .view-tab.active {
+    background: #257FBF;
+    color: #ffffff;
+    border: 1px solid #257FBF;
+    box-shadow: 0 4px 10px rgba(37, 127, 191, 0.3);
+}
+
+/* Active Tab Hover (slightly darker) */
+.pagespeed-container .view-tab.active:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+    color: #ffffff;
+}
+
+
+/* Scores Row */
+.pagespeed-container .scores-container {  
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.pagespeed-container .score-item {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.pagespeed-container .score-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    background-color: #f5f5f5;
+    border: 2px solid #d1d5db;
+}
+
+.pagespeed-container .score-circle.green {
+    background-color: #a3d49d57;
+    border-color: #2ecc71;
+    color: #2ecc71;
+}
+
+.pagespeed-container .score-circle.yellow {
+    background-color: #f2d36b69;
+    border-color: #f39c12;
+    color: #f39c12;
+}
+
+.pagespeed-container .score-circle.red {
+    background-color: #f5a7a46b;
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+.pagespeed-container .score-circle:hover {
+    transform: scale(1.1);
+}
+
+.pagespeed-container .score-name {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin-top: 8px;
+}
+
+/* Core Web Vitals Table */
+.pagespeed-container .vitals-container {
+    margin-top: 40px;
+}
+
+.pagespeed-container .vitals-container h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #1f2937;
+    text-align: center;
+    font-weight: 700px !important;
+}
+
+.pagespeed-container .vitals-table {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.pagespeed-container .vitals-table tr {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.pagespeed-container .vitals-table tr:hover {
+    transform: scale(1.02);
+}
+
+.pagespeed-container .vitals-table td {
+    padding: 14px 18px;
+    font-size: 15px;
+}
+
+.pagespeed-container .vital-name {
+    font-weight: 500;
+    color: #374151;
+}
+
+.pagespeed-container .vital-value {
+    font-weight: 600;
+    text-align: right;
+}
+
+.pagespeed-container .vital-value.green {
+    color: #2ecc71;
+}
+
+.pagespeed-container .vital-value.yellow {
+    color: #f39c12;
+}
+
+.pagespeed-container .vital-value.red {
+    color: #e74c3c;
+}
+
+/* Loader */
+.pagespeed-container .spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #257FBF;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .pagespeed-container .scores-container {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pagespeed-container .score-circle {
+    width: 65px;
+    height: 65px;
+    font-size: 20px;
+  }
+}

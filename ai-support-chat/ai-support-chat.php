@@ -82,7 +82,7 @@ function asc_widget_config() {
  * page/post IDs, or everywhere except them.
  */
 function asc_should_display() {
-	if ( ! get_option( 'asc_api_key' ) ) return false;
+	if ( '' === ASC_OpenAI::key( 'ASC_API_KEY', 'asc_api_key' ) ) return false;
 	if ( ! get_option( 'asc_widget_enabled', '1' ) ) return false;
 
 	$mode = get_option( 'asc_display_mode', 'all' );

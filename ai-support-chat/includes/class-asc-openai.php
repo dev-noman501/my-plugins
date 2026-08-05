@@ -13,8 +13,26 @@ class ASC_OpenAI {
 	private $provider;
 
 	public function __construct() {
-		$this->api_key  = get_option( 'asc_api_key' );
+		$this->api_key  = self::key( 'ASC_API_KEY', 'asc_api_key' );
 		$this->provider = get_option( 'asc_provider', 'openai' );
+	}
+
+	/**
+	 * Reads a credential, preferring a wp-config.php constant over the database.
+	 *
+	 * Defining the key in wp-config.php keeps it out of the options table, out of
+	 * database exports and backups, and out of anything committed to version
+	 * control. The settings field stays as the easy option for non-developers.
+	 *
+	 * @param string $constant Constant name, e.g. ASC_API_KEY.
+	 * @param string $option   Option name to fall back to.
+	 * @return string
+	 */
+	public static function key( $constant, $option ) {
+		if ( defined( $constant ) && constant( $constant ) ) {
+			return (string) constant( $constant );
+		}
+		return (string) get_option( $option, '' );
 	}
 
 	private function base_url( $provider ) {
@@ -37,7 +55,7 @@ class ASC_OpenAI {
 	}
 
 	private function embed_key() {
-		$key = get_option( 'asc_embed_api_key' );
+		$key = self::key( 'ASC_EMBED_API_KEY', 'asc_embed_api_key' );
 		return $key ? $key : $this->api_key;
 	}
 

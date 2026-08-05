@@ -29,7 +29,7 @@ class ASC_Indexer {
 	public function on_save_post( $post_id, $post ) {
 		if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) return;
 		if ( ! in_array( $post->post_type, $this->post_types(), true ) ) return;
-		if ( ! get_option( 'asc_api_key' ) ) return;
+		if ( '' === ASC_OpenAI::key( 'ASC_API_KEY', 'asc_api_key' ) ) return;
 
 		$this->delete_post_chunks( $post_id );
 		if ( 'publish' === $post->post_status ) {

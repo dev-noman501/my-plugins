@@ -1,0 +1,34 @@
+# Never commit anything that carries a credential.
+wp-config.php
+wp-config-local.php
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service-account*.json
+secrets.*
+*-secrets.*
+
+# Site exports and archives often contain wp-config.php or a database dump.
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.sql
+*.sql.gz
+*.sqlite
+
+# Local noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+node_modules/
+vendor/composer/installed.json.bak
+.idea/
+.vscode/
+*.swp
+*~

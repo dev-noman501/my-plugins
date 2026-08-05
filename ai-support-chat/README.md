@@ -124,6 +124,12 @@ Each handoff becomes a ticket. Opening one shows the **full chat transcript as c
 
 - **AI Provider** — OpenAI / Gemini / OpenRouter
 - **API Key** — a password field; never sent to the front end
+
+> 🔐 **Prefer `wp-config.php`.** Add `define( 'ASC_API_KEY', 'sk-...' );` (and
+> `ASC_EMBED_API_KEY` if embeddings use a different provider) and the plugin uses that
+> instead of the database. The key then never lands in the options table, a database
+> export or a backup. The settings field is ignored while the constant is set. See
+> [SECURITY.md](../SECURITY.md).
 - **Chat model** — pick one matching the provider (the plugin auto-corrects a stale selection after a provider switch)
 - **Embeddings provider** — leave on *Same as AI provider*, unless you chose OpenRouter, in which case set Gemini or OpenAI here plus its key
 

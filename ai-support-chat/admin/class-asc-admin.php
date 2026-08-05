@@ -170,7 +170,7 @@ class ASC_Admin {
 		<p><strong><?php echo $post_count; ?></strong> items indexed, <strong><?php echo $chunk_count; ?></strong> chunks stored. Posts and pages re-index automatically when saved.</p>
 		<p>
 			<button type="button" class="button button-secondary" id="asc-reindex-btn"
-				<?php disabled( ! get_option( 'asc_api_key' ) ); ?>>Re-index all content</button>
+				<?php disabled( '' === ASC_OpenAI::key( 'ASC_API_KEY', 'asc_api_key' ) ); ?>>Re-index all content</button>
 			<span id="asc-reindex-status" style="margin-left:10px;"></span>
 		</p>
 

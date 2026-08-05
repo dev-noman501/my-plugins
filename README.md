@@ -23,6 +23,13 @@ One folder per plugin. Each folder is a complete, self-contained WordPress plugi
 
 Each plugin documents itself inside its own folder — feature list, setup steps, admin screens, database schema, REST/AJAX surface, developer hooks, screenshots, known limitations, and what to expect when running it on a different website.
 
+## API keys and secrets
+
+No plugin in this repository stores a credential in its code. Keys are read from a
+constant in `wp-config.php`, falling back to the plugin's own settings screen.
+See **[SECURITY.md](SECURITY.md)** for where each plugin's key goes, how to restrict
+it at the provider, and what to do if one ever gets committed.
+
 ## Installation
 
 ```bash

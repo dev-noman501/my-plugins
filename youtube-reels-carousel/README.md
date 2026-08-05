@@ -11,9 +11,11 @@
 
 ## Screenshots
 
-Five tiles per row, each one a live muted embed, with the previous/next arrows overlaid.
+Five tiles per row, each one a live muted embed, with the previous/next arrows overlaid. These are real YouTube **Shorts** — vertical 9:16 video, which is what the tile is shaped for.
 
 ![Carousel on the front end](docs/screenshots/01-carousel.png)
+
+> **Use Shorts, not regular videos.** A standard 16:9 upload still plays, but it letterboxes inside the vertical tile with large black bands above and below. Paste `youtube.com/shorts/…` links (or any genuinely vertical video) and the frame fills properly, as above.
 
 Reels are managed like any other post type.
 
@@ -44,15 +46,17 @@ The video chrome is stripped (`controls=0`, no keyboard, no fullscreen button) s
 
 **4. Add reels.** Reels → Add New → give it a title (for your own reference — it is never displayed) → paste a YouTube URL into `video_url` → Publish.
 
-Accepted URL formats:
+Accepted URL formats — **prefer the Shorts form**, since the tiles are vertical:
 
 ```
+https://www.youtube.com/shorts/VIDEOID      ← recommended
 https://www.youtube.com/watch?v=VIDEOID
 https://youtu.be/VIDEOID
-https://www.youtube.com/shorts/VIDEOID
 https://www.youtube.com/embed/VIDEOID
 <iframe src="https://www.youtube.com/embed/VIDEOID" …></iframe>
 ```
+
+All five resolve to the same video id, so a Short pasted in `watch?v=` form works too. What matters is that the **video itself is vertical** — a landscape video will letterbox inside the tile.
 
 **5. Place the shortcode** on any page:
 

@@ -12,11 +12,29 @@
 
 ## Screenshots
 
+### Live deployment
+
+This plugin runs in production at **[codinative.com/store-audit](https://codinative.com/store-audit/)**. The screenshots below are that live tool, styled with the site's own branding and logo — everything brand-specific is a setting, so your install carries yours.
+
+A visitor is met by the email gate:
+
+![Email gate on the live site](docs/screenshots/05-live-email-gate.png)
+
+Then they enter a URL and get real Lighthouse scores and Core Web Vitals, with Desktop and Mobile tabs:
+
+| Desktop | Mobile |
+|---|---|
+| ![Desktop results](docs/screenshots/06-live-results-desktop.png) | ![Mobile results](docs/screenshots/07-live-results-mobile.png) |
+
+Both tabs come from a single request — the plugin fetches desktop and mobile together, so switching is instant.
+
+### Admin
+
 **Settings → PageSpeed Audit** — the API key, the PDF logo and the contact email printed on the report.
 
 ![Settings](docs/screenshots/01-settings.png)
 
-On the front end, the shortcode renders an email gate followed by the audit form.
+On a fresh install with the default theme, the same shortcode renders like this:
 
 | Email gate | Audit form |
 |---|---|

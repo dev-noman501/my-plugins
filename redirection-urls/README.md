@@ -12,17 +12,21 @@
 
 ## Screenshots
 
-The list table shows the destination and the status code at a glance, so an audit does not mean opening every row.
+**The spreadsheet you start from.** Two columns, no header row — column A is the old URL, column B is where it should go. A ready-made copy is in [`docs/sample-redirects.csv`](docs/sample-redirects.csv).
 
-![Redirect list](docs/screenshots/01-redirect-list.png)
+![Sample spreadsheet](docs/screenshots/04-sample-sheet.png)
 
-Each redirect takes an old URL, a new URL and a status code.
-
-![Redirect editor](docs/screenshots/02-redirect-editor.png)
-
-Bulk upload takes a two-column CSV and reports what it did.
+**Bulk Upload** takes that file as CSV.
 
 ![Bulk upload](docs/screenshots/03-bulk-upload.png)
+
+**After importing**, the plugin reports exactly what it did and every row is visible with its destination and status code — no opening each one to find out where it points. (The screenshot below is that sample file actually imported: *6 added, 0 updated, 0 skipped*, on top of two redirects created by hand.)
+
+![Redirect list after import](docs/screenshots/01-redirect-list.png)
+
+**Editing a redirect** — old URL, new URL, and the 301 / 302 / 307 selector.
+
+![Redirect editor](docs/screenshots/02-redirect-editor.png)
 
 ---
 
@@ -85,15 +89,34 @@ The list table shows **Old URL**, **Redirects to** and **Type** at a glance, so 
 
 **Redirects → Bulk Upload**
 
-The file must be a plain **CSV** with **two columns and no header row** — old URL first, new URL second:
+The file must be a plain **CSV** with **two columns and no header row** — old URL first, new URL second.
 
-```
-https://example.com/old-page/,https://example.com/new-page/
+Build it in Excel or Google Sheets exactly like this:
+
+| | A | B |
+|---|---|---|
+| **1** | `https://example.com/old-services/` | `https://example.com/services/` |
+| **2** | `https://example.com/blog/2019/legacy-post/` | `https://example.com/blog/new-post/` |
+| **3** | `https://example.com/products/discontinued-widget/` | `https://example.com/products/widget-pro/` |
+| **4** | `/about-us-old/` | `/about/` |
+| **5** | `/shop/category/summer-2023/` | `/shop/category/summer/` |
+| **6** | `https://example.com/contact-form/` | `https://example.com/contact/` |
+
+Then **File → Save as / Download → CSV**, which gives you:
+
+```csv
+https://example.com/old-services/,https://example.com/services/
 https://example.com/blog/2019/legacy-post/,https://example.com/blog/new-post/
-/another-old-path/,/another-new-path/
+https://example.com/products/discontinued-widget/,https://example.com/products/widget-pro/
+/about-us-old/,/about/
+/shop/category/summer-2023/,/shop/category/summer/
+https://example.com/contact-form/,https://example.com/contact/
 ```
 
-If you built the list in Excel or Google Sheets, use **File → Save as / Download → CSV** first. A real `.xlsx` workbook is a zip archive and cannot be read — the plugin will tell you so rather than importing garbage.
+Download the ready-made version: **[`docs/sample-redirects.csv`](docs/sample-redirects.csv)**.
+
+> A real `.xlsx` workbook is a zip archive and cannot be read — the plugin will say so rather than importing garbage. Always export to CSV first.
+> Mixing full URLs and site-relative paths in the same file is fine; both forms work.
 
 After the upload you get a count: *"Import finished: 42 added, 3 updated, 1 skipped."*
 

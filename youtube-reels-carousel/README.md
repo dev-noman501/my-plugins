@@ -99,27 +99,28 @@ The lightbox shows three at a time with the centre slide scaled up and the neigh
 
 ---
 
-## Renaming from Metaviz Reels
+## Upgrading from an earlier build
 
-This plugin was previously called **Metaviz Reels**. Everything brand-specific has been renamed:
+On a fresh install there is nothing to do — skip this section.
 
-| Then | Now |
-|---|---|
-| Plugin name `Metaviz Reels` | `YouTube Reels Carousel` |
-| Folder `metaviz-reels` | `youtube-reels-carousel` |
-| Post type `metaviz_reel` | `yrc_reel` |
-| Shortcode `[metaviz_reels]` | `[youtube_reels]` |
-| Prefixes `METAVIZ_`, `metaviz_`, `.metaviz-*` | `YRC_`, `yrc_`, `.yrc-*` |
+If you are replacing an earlier, differently-named build of this plugin, two things changed and neither migrates on its own.
 
-**`[metaviz_reels]` still works** — it is registered as an alias, so existing pages keep rendering.
+**1. The shortcode.** It is now `[youtube_reels]`. To keep pages that use the old name rendering, register it:
 
-**Existing reels do not migrate automatically.** The post type key changed, so posts created under the old plugin are invisible until you update them:
-
-```sql
-UPDATE wp_posts SET post_type = 'yrc_reel' WHERE post_type = 'metaviz_reel';
+```php
+add_filter( 'yrc_legacy_shortcodes', function ( $names ) {
+    $names[] = 'my_old_shortcode_name';
+    return $names;
+} );
 ```
 
-On a fresh install there is nothing to do.
+**2. The post type.** Reels now live under `yrc_reel`. Posts created by the old build stay in the database but are invisible until you move them:
+
+```sql
+UPDATE wp_posts SET post_type = 'yrc_reel' WHERE post_type = 'my_old_post_type';
+```
+
+Back up the database first, and substitute your old post type key. The ACF field name (`video_url`) is unchanged, so the videos themselves carry over untouched.
 
 ---
 

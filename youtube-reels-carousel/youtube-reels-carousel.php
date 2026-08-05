@@ -199,8 +199,22 @@ function yrc_reels_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('youtube_reels', 'yrc_reels_shortcode');
-// Older name kept so existing pages keep rendering.
-add_shortcode('metaviz_reels', 'yrc_reels_shortcode');
+
+/**
+ * Upgrading from an earlier, differently-named build of this plugin? Register
+ * whatever shortcode name it used and the pages already using it keep working:
+ *
+ *     add_filter( 'yrc_legacy_shortcodes', function ( $names ) {
+ *         $names[] = 'my_old_shortcode_name';
+ *         return $names;
+ *     } );
+ */
+foreach ( (array) apply_filters( 'yrc_legacy_shortcodes', array() ) as $yrc_legacy ) {
+    $yrc_legacy = sanitize_key( $yrc_legacy );
+    if ( $yrc_legacy && ! shortcode_exists( $yrc_legacy ) ) {
+        add_shortcode( $yrc_legacy, 'yrc_reels_shortcode' );
+    }
+}
 
 // (Optional helper file hook)
 if (file_exists(YRC_REELS_DIR . 'inc/templates.php')) {

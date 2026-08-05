@@ -11,8 +11,10 @@ class TGMV_Settings {
 
 	public static function defaults() {
 		return array(
-			'brand_name'   => 'TALABGAR E MADINA',
-			'brand_logo'   => '', // empty = bundled TGM logo
+			// Defaults to the site's own name so a fresh install never prints
+			// somebody else's agency on a voucher.
+			'brand_name'   => get_bloginfo( 'name' ),
+			'brand_logo'   => '', // empty = the bundled placeholder logo
 			'center_logo'  => '',
 			'center_title' => 'Hotel Voucher',
 			'prefix'       => 'UB-',

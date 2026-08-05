@@ -121,7 +121,7 @@ Only users with the `manage_options` capability (Administrators) can see or use 
 
 | Setting | Default | What it does |
 |---|---|---|
-| Default Brand Name | `TALABGAR E MADINA` | Printed in the centre header block |
+| Default Brand Name | your site's name | Printed in the centre header block |
 | Default Brand Logo | bundled TGM logo | Fallback logo; **Use Default (TGM)** restores it |
 | Centre Logo | empty | Overrides the brand logo in the centre block; leave empty to reuse the brand logo |
 | Centre Title | `Hotel Voucher` | Line under the brand name, e.g. "Umrah Voucher" |
@@ -352,4 +352,4 @@ TGMV_Frontend::fdatetime( $value );
 | **GRP #** | Group number tying passengers into one booking group |
 | **PNR** | Airline booking reference |
 | **Arkan / Receiver** | The receiving party in Saudi Arabia, printed in the right header block |
-| **TGM** | *Talabgar-e-Madina* (طلبگارِ مدینہ) — the operator this plugin was originally built for, and the source of the bundled default logo and prefixes |
+| **TGM** | The prefix used throughout the plugin's slugs, option keys and CSS classes, and the name of the bundled placeholder logo |

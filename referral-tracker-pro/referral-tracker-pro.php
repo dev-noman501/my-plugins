@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Referral Tracker Pro
- * Plugin URI:        https://scrubscleaning.co.uk/
+ * Plugin URI:        https://github.com/dev-noman501/my-plugins
  * Description:       Referral tracking & analytics: visits, tel: call clicks and form submissions attributed to referral links, with a non-technical admin analytics dashboard.
  * Version:           1.3.5
  * Requires at least: 5.6

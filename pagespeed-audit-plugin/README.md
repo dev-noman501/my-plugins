@@ -12,33 +12,17 @@
 
 ## Screenshots
 
-### Live deployment
-
-This plugin runs in production at **[codinative.com/store-audit](https://codinative.com/store-audit/)**. The screenshots below are that live tool, styled with the site's own branding and logo — everything brand-specific is a setting, so your install carries yours.
-
-A visitor is met by the email gate:
-
-![Email gate on the live site](docs/screenshots/05-live-email-gate.png)
-
-Then they enter a URL and get real Lighthouse scores and Core Web Vitals, with Desktop and Mobile tabs:
+A visitor enters a URL and gets real Lighthouse scores and Core Web Vitals, with Desktop and Mobile tabs. Both come from a single request — the plugin fetches the two strategies together, so switching tabs is instant.
 
 | Desktop | Mobile |
 |---|---|
-| ![Desktop results](docs/screenshots/06-live-results-desktop.png) | ![Mobile results](docs/screenshots/07-live-results-mobile.png) |
+| ![Desktop results](docs/screenshots/02-results-desktop.png) | ![Mobile results](docs/screenshots/03-results-mobile.png) |
 
-Both tabs come from a single request — the plugin fetches desktop and mobile together, so switching is instant.
-
-### Admin
+The colours, logo and copy all come from the site the plugin is installed on — nothing about the look is baked into the plugin.
 
 **Settings → PageSpeed Audit** — the API key, the PDF logo and the contact email printed on the report.
 
 ![Settings](docs/screenshots/01-settings.png)
-
-On a fresh install with the default theme, the same shortcode renders like this:
-
-| Email gate | Audit form |
-|---|---|
-| ![Email gate](docs/screenshots/02-email-gate.png) | ![Audit form](docs/screenshots/03-audit-form.png) |
 
 Captured addresses are exported from **PageSpeed Emails**.
 
@@ -49,7 +33,7 @@ Captured addresses are exported from **PageSpeed Emails**.
 ## What changed in this release
 
 - **The Google API key is no longer hardcoded.** The original shipped a live key baked into the source, which meant every copy of the plugin shared one key and anyone with the files could use it. There is now a settings screen, and the key can also be set in `wp-config.php`.
-- **Brand assets removed.** The Codinative logo, banner and hardcoded `info@codinative.com` footer are gone. The PDF logo and contact email are settings, so the report carries whoever installs it.
+- **Brand assets removed.** The bundled logo, banner image and hardcoded support email in the PDF footer are gone. The report logo and contact email are settings now, so the report carries whoever installs it.
 - A stray `report.pdf` development artifact was removed from the package.
 
 ---

@@ -21,17 +21,18 @@
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0,0,0,0.15);
   background: #000;
-  height: 649px;
+  /* No fixed height. The tile is exactly as tall as the video inside it,
+     which is what stops a black gap appearing under the frame at column
+     widths the theme happens to produce. */
 }
 
-/* Video aspect (9:16 or 16:9) */
+/* Video aspect. --reel-padding comes from the shortcode's `aspect` attribute
+   (9:16 -> 177.78%, 16:9 -> 56.25%), so the height follows the tile width on
+   any theme or screen size. */
 .yrc-iframe-wrap {
   position: relative;
   width: 100%;
-  /* Choose one aspect:
-     For vertical reels (9:16): padding-top: 177.78%;
-     For 16:9: padding-top: 56.25%; */
-  padding-top: 177.78%; /* vertical reels feel more like shorts */
+  padding-top: var(--reel-padding, 177.78%);
 }
 .yrc-iframe-wrap iframe {
   position: absolute;
@@ -39,6 +40,10 @@
   width: 100%;
   height: 100%;
   border: 0;
+  /* --reel-cover-scale zooms the embed slightly so YouTube's own letterboxing
+     is cropped away. 1 = untouched. */
+  transform: scale(var(--reel-cover-scale, 1));
+  transform-origin: center center;
 }
 
 /* Hover play overlay (white button appears on hover) */
@@ -148,7 +153,7 @@
 .yrc-lightbox-slider .yrc-lb-slide .yrc-iframe-wrap {
   position: relative;
   width: 100%;
-  padding-top: 177.78%; /* Maintain the vertical 9:16 aspect ratio */
+  padding-top: var(--reel-padding, 177.78%); /* follows the shortcode's aspect */
 }
 
 .yrc-lightbox-slider .yrc-lb-slide .yrc-iframe-wrap iframe {
@@ -204,7 +209,7 @@
 .yrc-lightbox-slider .yrc-lb-slide .yrc-iframe-wrap {
   position: relative;
   width: 100%;
-  padding-top: 177.78%; /* Maintain the vertical 9:16 aspect ratio */
+  padding-top: var(--reel-padding, 177.78%); /* follows the shortcode's aspect */
 }
 
 .yrc-lightbox-slider .yrc-lb-slide .yrc-iframe-wrap iframe {

@@ -12,6 +12,8 @@ One folder per plugin. Each folder is a complete, self-contained WordPress plugi
 | [`casa-prime-elementor-addon`](casa-prime-elementor-addon/) | Update-safe custom styling layer for Elementor and WooCommerce widgets on the Casa Prime storefront. | [README](casa-prime-elementor-addon/README.md) |
 | [`ai-support-chat`](ai-support-chat/) | AI chatbot trained on your own site content and uploaded documents (RAG), with human handoff to a built-in ticket system. Multi-provider (OpenAI / Gemini / OpenRouter), Shadow DOM widget, also embeddable on external sites. | [README](ai-support-chat/README.md) |
 | [`tgm-voucher`](tgm-voucher/) | Umrah / Hajj travel voucher generator — six-step wizard, voucher list table, QR code, and a print-ready A4 document with an Approved / Unapproved watermark. | [README](tgm-voucher/README.md) |
+| [`referral-tracker-pro`](referral-tracker-pro/) | Referral link tracking and analytics — visits, `tel:` call clicks and form submissions attributed to per-referrer links, with lead capture, printable lead sheets and a CallRail integration for verified calls. | [README](referral-tracker-pro/README.md) |
+| [`scrubs-ghl-proxy`](scrubs-ghl-proxy/) | One-route server-side proxy to the GoHighLevel Contacts API — fixes browser CORS errors, keeps the API token off the page source, and translates the legacy v1 payload to v2. | [README](scrubs-ghl-proxy/README.md) |
 
 ## Documentation
 

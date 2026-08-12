@@ -25,7 +25,7 @@ Each plugin documents itself inside its own folder — feature list, setup steps
 
 ## Also by the same author
 
-📘 **[WordPress Developer Complete Guide](https://github.com/dev-noman501/wordpress-developer-guide)** — a 54-page interview preparation handbook covering PHP, MySQL, WordPress core, plugin development, REST API and JWT, ACF, directory sites, WooCommerce, performance and debugging. Lives in its own repository.
+📘 **[WordPress Developer Complete Guide](https://github.com/dev-noman501/wordpress-developer-guide)** — a 54-page reference guide covering PHP, MySQL, WordPress core, plugin development, REST API and JWT, ACF, directory sites, WooCommerce, performance and debugging. Lives in its own repository.
 
 ## API keys and secrets
 

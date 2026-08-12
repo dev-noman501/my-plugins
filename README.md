@@ -23,9 +23,9 @@ One folder per plugin. Each folder is a complete, self-contained WordPress plugi
 
 Each plugin documents itself inside its own folder — feature list, setup steps, admin screens, database schema, REST/AJAX surface, developer hooks, screenshots, known limitations, and what to expect when running it on a different website.
 
-## Also here
+## Also by the same author
 
-📘 **[WordPress Developer Complete Guide](wordpress-developer-guide/)** — a 54-page interview preparation handbook covering PHP, MySQL, WordPress core, plugin development, REST API and JWT, ACF, directory sites, WooCommerce, performance and debugging. Concepts in Roman Urdu, code in English. 10 chapters, 45+ practice questions, answer key and a full mock test.
+📘 **[WordPress Developer Complete Guide](https://github.com/dev-noman501/wordpress-developer-guide)** — a 54-page interview preparation handbook covering PHP, MySQL, WordPress core, plugin development, REST API and JWT, ACF, directory sites, WooCommerce, performance and debugging. Lives in its own repository.
 
 ## API keys and secrets
 

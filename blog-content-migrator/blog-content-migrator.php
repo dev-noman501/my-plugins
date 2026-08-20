@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Migrate Suite
  * Description: Export any post type (content, images, ACF fields, RankMath/Yoast SEO meta) from one WordPress site and import it into another - whole post types, or specific posts by URL.
- * Version: 2.0.0
+ * Version: 2.2.0
  * Author: Noman Nadeem
  */
 
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BCM_VERSION', '2.0.0' );
+define( 'BCM_VERSION', '2.2.0' );
 define( 'BCM_META_SOURCE_ID', '_bcm_source_id' );
 define( 'BCM_META_SOURCE_URL', '_bcm_source_url' );
 
@@ -70,6 +70,40 @@ function bcm_ensure_post_type_registered( $slug, $label ) {
 		update_option( 'bcm_dynamic_post_types', $types );
 	}
 	bcm_register_dynamic_post_types();
+}
+
+add_action( 'init', 'bcm_register_dynamic_taxonomies', 6 );
+function bcm_register_dynamic_taxonomies() {
+	$taxes = get_option( 'bcm_dynamic_taxonomies', array() );
+	foreach ( $taxes as $slug => $info ) {
+		if ( taxonomy_exists( $slug ) ) {
+			continue; // A real plugin/theme already owns this slug - don't shadow it.
+		}
+		register_taxonomy( $slug, $info['post_types'], array(
+			'label'             => $info['label'],
+			'hierarchical'      => ! empty( $info['hierarchical'] ),
+			'public'            => true,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'show_in_rest'      => true,
+		) );
+	}
+}
+
+function bcm_ensure_taxonomy_registered( $slug, $label, $hierarchical, $post_type ) {
+	if ( taxonomy_exists( $slug ) ) {
+		register_taxonomy_for_object_type( $slug, $post_type );
+		return;
+	}
+	$taxes = get_option( 'bcm_dynamic_taxonomies', array() );
+	if ( ! isset( $taxes[ $slug ] ) ) {
+		$taxes[ $slug ] = array( 'label' => $label, 'hierarchical' => $hierarchical, 'post_types' => array( $post_type ) );
+	} elseif ( ! in_array( $post_type, $taxes[ $slug ]['post_types'], true ) ) {
+		$taxes[ $slug ]['post_types'][] = $post_type;
+	}
+	update_option( 'bcm_dynamic_taxonomies', $taxes );
+	bcm_register_dynamic_taxonomies();
+	register_taxonomy_for_object_type( $slug, $post_type );
 }
 
 /* ---------------------------------------------------------------------
@@ -855,8 +889,7 @@ function bcm_handle_export( WP_REST_Request $request ) {
 			'status'         => $post->post_status,
 			'date'           => $post->post_date,
 			'date_gmt'       => $post->post_date_gmt,
-			'categories'     => wp_get_post_categories( $post->ID, array( 'fields' => 'names' ) ),
-			'tags'           => wp_get_post_tags( $post->ID, array( 'fields' => 'names' ) ),
+			'taxonomies'     => bcm_export_post_taxonomies( $post ),
 			'featured_image' => $featured_image,
 			'meta'           => $meta,
 			'source_url'     => get_permalink( $post ),
@@ -870,6 +903,52 @@ function bcm_handle_export( WP_REST_Request $request ) {
 		'has_more' => isset( $has_more_override ) ? $has_more_override : ( $page < (int) $query->max_num_pages ),
 		'posts'    => $posts,
 	), 200 );
+}
+
+/**
+ * Export every taxonomy term assigned to a post - not just categories/tags,
+ * but any custom taxonomy registered for its post type - including each
+ * term's parent (by slug) so hierarchy can be rebuilt on the target site.
+ */
+function bcm_export_post_taxonomies( $post ) {
+	$blacklist  = array( 'nav_menu', 'link_category', 'post_format' );
+	$taxonomies = get_object_taxonomies( $post->post_type, 'names' );
+	$out        = array();
+
+	foreach ( $taxonomies as $tax ) {
+		if ( in_array( $tax, $blacklist, true ) ) {
+			continue;
+		}
+		$terms = wp_get_post_terms( $post->ID, $tax, array( 'fields' => 'all' ) );
+		if ( is_wp_error( $terms ) || empty( $terms ) ) {
+			continue;
+		}
+
+		$tax_object = get_taxonomy( $tax );
+		$list       = array();
+		foreach ( $terms as $term ) {
+			$parent_slug = '';
+			if ( $term->parent ) {
+				$parent_term = get_term( $term->parent, $tax );
+				if ( $parent_term && ! is_wp_error( $parent_term ) ) {
+					$parent_slug = $parent_term->slug;
+				}
+			}
+			$list[] = array(
+				'name'        => $term->name,
+				'slug'        => $term->slug,
+				'parent_slug' => $parent_slug,
+			);
+		}
+
+		$out[ $tax ] = array(
+			'label'         => $tax_object ? $tax_object->labels->name : ucwords( str_replace( array( '_', '-' ), ' ', $tax ) ),
+			'hierarchical'  => $tax_object ? (bool) $tax_object->hierarchical : false,
+			'terms'         => $list,
+		);
+	}
+
+	return $out;
 }
 
 /* ---------------------------------------------------------------------
@@ -1220,11 +1299,8 @@ function bcm_import_single_post( $remote_post, $source_host, $default_post_type 
 		return array( 'title' => $title, 'status' => 'error', 'message' => $post_id->get_error_message() );
 	}
 
-	if ( ! empty( $remote_post['categories'] ) ) {
-		wp_set_post_terms( $post_id, $remote_post['categories'], 'category', false );
-	}
-	if ( ! empty( $remote_post['tags'] ) ) {
-		wp_set_post_terms( $post_id, $remote_post['tags'], 'post_tag', false );
+	if ( ! empty( $remote_post['taxonomies'] ) ) {
+		bcm_import_post_taxonomies( $post_id, $post_type, $remote_post['taxonomies'] );
 	}
 
 	foreach ( $remote_post['meta'] as $key => $value ) {
@@ -1261,6 +1337,56 @@ function bcm_track_failed_upload( $url ) {
 
 function bcm_get_failed_uploads() {
 	return isset( $GLOBALS['bcm_failed_uploads'] ) ? $GLOBALS['bcm_failed_uploads'] : array();
+}
+
+/**
+ * Recreate every taxonomy term exported by bcm_export_post_taxonomies() on
+ * this site and assign them to the imported post. Missing taxonomies are
+ * auto-registered (like missing post types); missing terms are created,
+ * resolving each one's parent by slug first so hierarchy survives.
+ */
+function bcm_import_post_taxonomies( $post_id, $post_type, $taxonomies ) {
+	foreach ( $taxonomies as $tax => $tax_data ) {
+		$label        = isset( $tax_data['label'] ) ? $tax_data['label'] : ucwords( str_replace( array( '_', '-' ), ' ', $tax ) );
+		$hierarchical = ! empty( $tax_data['hierarchical'] );
+		$terms        = isset( $tax_data['terms'] ) ? $tax_data['terms'] : array();
+
+		if ( empty( $terms ) ) {
+			continue;
+		}
+
+		bcm_ensure_taxonomy_registered( $tax, $label, $hierarchical, $post_type );
+
+		$term_ids = array();
+		foreach ( $terms as $t ) {
+			$parent_id = 0;
+			if ( ! empty( $t['parent_slug'] ) ) {
+				$parent_id = bcm_get_or_create_term( $t['parent_slug'], $t['parent_slug'], $tax, 0 );
+			}
+			$term_id = bcm_get_or_create_term( $t['name'], $t['slug'], $tax, $parent_id );
+			if ( $term_id ) {
+				$term_ids[] = $term_id;
+			}
+		}
+
+		if ( ! empty( $term_ids ) ) {
+			wp_set_object_terms( $post_id, $term_ids, $tax, false );
+		}
+	}
+}
+
+function bcm_get_or_create_term( $name, $slug, $taxonomy, $parent_id ) {
+	$existing = get_term_by( 'slug', $slug, $taxonomy );
+	if ( $existing && ! is_wp_error( $existing ) ) {
+		return (int) $existing->term_id;
+	}
+	$inserted = wp_insert_term( $name, $taxonomy, array( 'slug' => $slug, 'parent' => $parent_id ) );
+	if ( is_wp_error( $inserted ) ) {
+		// Term already exists under a different slug collision - fall back to matching by name.
+		$existing = get_term_by( 'name', $name, $taxonomy );
+		return $existing && ! is_wp_error( $existing ) ? (int) $existing->term_id : 0;
+	}
+	return (int) $inserted['term_id'];
 }
 
 /**

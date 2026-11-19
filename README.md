@@ -19,6 +19,7 @@ One folder per plugin. Each folder is a complete, self-contained WordPress plugi
 | [`blog-content-migrator`](blog-content-migrator/) | "WP Migrate Suite" — move posts, pages or any custom post type between two WordPress sites, with real image sideloading, internal-link rewriting, taxonomy/hierarchy migration, and ACF field/field-group migration. Import a whole post type or specific posts by URL. | [README](blog-content-migrator/README.md) |
 | [`pagespeed-audit-plugin`](pagespeed-audit-plugin/) | Front-end site-audit tool — runs any URL through the Google PageSpeed Insights API, shows Lighthouse scores and Core Web Vitals for desktop and mobile, and emails a PDF report. | [README](pagespeed-audit-plugin/README.md) |
 | [`youtube-reels-carousel`](youtube-reels-carousel/) | Full-width carousel of vertical YouTube videos that autoplay muted in the grid and open in a centre-mode lightbox. | [README](youtube-reels-carousel/README.md) |
+| [`acf-repeater-for-elementor`](acf-repeater-for-elementor/) | Render any ACF Repeater field through your own Elementor template, as a responsive grid or a Swiper carousel. Subfield dynamic tags, nested repeaters, Options page support, per-row CSS variables, and works with free Elementor. | [README](acf-repeater-for-elementor/README.md) |
 
 ## Documentation
 

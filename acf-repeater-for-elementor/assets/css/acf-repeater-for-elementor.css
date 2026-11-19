@@ -1,0 +1,47 @@
+.arfe-repeater-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.arfe-repeater-wrapper .swiper {
+	overflow: hidden;
+	position: relative;
+}
+
+.arfe-nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	cursor: pointer;
+	z-index: 10;
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+}
+
+.arfe-nav::after {
+	font-family: swiper-icons;
+	font-size: inherit;
+}
+
+.arfe-nav-prev {
+	left: 10px;
+}
+
+.arfe-nav-next {
+	right: 10px;
+}
+
+.arfe-repeater-wrapper .swiper-pagination-bullet {
+	opacity: 1;
+	background: #c4c4c4;
+}
+
+.arfe-repeater-wrapper .swiper-pagination-bullet-active {
+	background: #333333;
+}
